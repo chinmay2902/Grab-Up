@@ -1,0 +1,110 @@
+{%extends "blog/base.html" %}
+{% block title %}Group Details{%endblock%}
+{%block body%}
+
+<!-- Options -->
+
+<div class="row mt-4">
+    <div class="col col-lg">
+
+        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+            <label class="btn btn-secondary active "  id="first">
+                <input type="radio" name="options" autocomplete="off" checked value="blog"> Blog
+            </label>
+            <label class="btn btn-secondary " id="second">
+                <input type="radio" name="options"  autocomplete="off" value="update"> Update
+            </label>
+            <label class="btn btn-secondary" id="third">
+                <input type="radio" name="options"  autocomplete="off" value="delete"> Delete
+            </label>
+        </div>
+
+    </div>
+</div>
+
+<!-- Blog -->
+<div class="row" id="blog">
+    <div class="col-lg-9">
+        <div class="card shadow-lg mt-3">
+            {% for group in groups %}
+            <div class="card-header">
+                <h2>
+                    <img src="/media/{{group.img}}" style="height: 50px;width:50px;border-radius: 50%;">
+                    <strong style="color: black">{{group.name}}</strong>
+                </h2>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col col-lg-12">
+                        <p>{{group.disc}}</p>
+                    </div>
+                </div>
+                <div class="col col-lg-2 ml-auto">
+                    <div class="container ml-auto"><i>-by {{group.creater}}</i></div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col col-lg-3">
+        <div class="card shadow-lg mt-5">
+
+            <div class="card-header">
+                <h6><strong>All Members</strong></h6>
+            </div>
+            <div class="card-body">
+                {% for member in members %}
+                <div class="container">
+                    {{member.user}}
+                    {% ifequal member.user group.creater %}
+                    <i>(admin)</i>
+                    {%endifequal%}
+                </div>
+                {%endfor%}
+                {%endfor%}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Update -->
+<div class="container" id="update" style="display: none;">
+
+    <h1>Update</h1>
+</div>
+
+
+<!-- Delete -->
+<div class="container" id="delete" style="display: none;">
+    <h1>Delete</h1>
+</div>
+
+
+<!-- https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-show-hide-div-using-radio-button -->
+<script>
+
+    $(document).ready(function () {
+
+        $("#first").click(function(){
+            $("#update").hide()
+            $("#delet").hide()
+            $("#blog").toggle()
+        })
+        $("#second").click(function(){
+            $("#delete").hide()
+            $("#blog").hide()
+            $("#update").toggle()
+        })
+        $("#third").click(function(){
+            $("#update").hide()
+            $("#blog").hide()
+            $("#delete").toggle()
+        })
+
+    })
+</script>
+{% endblock %}

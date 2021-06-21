@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% block title%}Index{%endblock%}
+{% block body %}
+
+<div class="container">
+
+    <div class="row mt-4">
+        <div class="col col-lg-3">
+            <h3>Profile</h3>
+        </div>
+
+        <div class="col col-lg-9">
+            <div class="card shadow-lg ">
+                <div class="card-header">
+                    <strong>
+                        Your Groups
+                    </strong>
+                </div>
+                <div class="card-body">
+                    {% for group in group_list %}
+                    <div class="row">
+                        <div class="col col-lg-12">
+                            <span>
+                                <h2><a href="{% url 'group' group.id %}">
+                                    <img src="media/{{group.img}}" style="height: 50px;width:50px;border-radius: 50%;">
+                                    <strong style="color: black">{{group.name}}</strong></a>
+                                </h2>
+                            </span>
+                            <p>{{group.disc}}</p>
+                        </div>
+                    </div>
+                    <div class=" col col-lg-2 ml-auto">
+                        <div class="container ml-auto"><i>-by {{group.creater}}</i></div>
+                    </div>
+
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{%endblock%}
