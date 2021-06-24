@@ -62,6 +62,20 @@ def update_group(request,id):
             messages.error(request,"Form is not valid")
             return redirect("/group/id")
 
+def delete_group(request,id):
+    groups=Group.objects.get(id=id)
+    if request.method=="POST":
+        groups.delete()
+        return redirect("/")
+
+def all_groups(request):
+    groups=Group.objects.all()
+    context={"groups":groups}
+    return render(request,"blog/all_groups.html",context)
+
+
+
+
 
 def loginUser(request):
     if request.method=="POST":
