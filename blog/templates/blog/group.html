@@ -1,4 +1,5 @@
 {%extends "blog/base.html" %}
+{% load static %}
 {% block title %}Group Details{%endblock%}
 {%block body%}
 
@@ -8,14 +9,14 @@
     <div class="col col-lg">
 
         <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-            <label class="btn btn-secondary active "  id="first">
+            <label class="btn btn-secondary active " id="first">
                 <input type="radio" name="options" autocomplete="off" checked value="blog"> Blog
             </label>
             <label class="btn btn-secondary " id="second">
-                <input type="radio" name="options"  autocomplete="off" value="update"> Update
+                <input type="radio" name="options" autocomplete="off" value="update"> Update
             </label>
             <label class="btn btn-secondary" id="third">
-                <input type="radio" name="options"  autocomplete="off" value="delete"> Delete
+                <input type="radio" name="options" autocomplete="off" value="delete"> Delete
             </label>
         </div>
 
@@ -26,10 +27,14 @@
 <div class="row" id="blog">
     <div class="col-lg-9">
         <div class="card shadow-lg mt-3">
-            {% for group in groups %}
             <div class="card-header">
                 <h2>
+                    <!-- <img src="/media/{{group.img}}" style="height: 50px;width:50px;border-radius: 50%;"> -->
+                    {% if group.img %}
                     <img src="/media/{{group.img}}" style="height: 50px;width:50px;border-radius: 50%;">
+                    {%else%}
+                    <img src="{% static 'images/group.png' %}" style="height: 50px;width:50px;border-radius: 50%;">
+                    {%endif%}
                     <strong style="color: black">{{group.name}}</strong>
                 </h2>
             </div>
@@ -64,7 +69,6 @@
                     {%endifequal%}
                 </div>
                 {%endfor%}
-                {%endfor%}
             </div>
 
         </div>
@@ -73,8 +77,42 @@
 
 <!-- Update -->
 <div class="container" id="update" style="display: none;">
+    <div class="card text-center shadow-lg p-3 mb-5 bg-white rounded mt-4">
+        <div class="card-header ">
+            <h3><strong>Update Group</strong></h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/update_group/{{id}}">
+                {% csrf_token %}
+                <div class="container mt-3">
+                    <div class="mb-3">
+                        <label><strong>Enter Topic :</strong></label>
+                        {{form.name}}
+                    </div>
+                    <div class="mb-3">
+                        <label><strong>Enter Website Name :</strong></label>
+                        {{form.disc}}
+                    </div>
+                    <div class="mb-3">
+                        <label><strong>Enter URL :</strong></label>
+                        {{form.img}}
+                    </div>
+                    <div class="mb-3" style="display: none;">
+                        {{form.creater}}
+                    </div>
+                </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary ml-3">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
 
-    <h1>Update</h1>
+
+
+
 </div>
 
 
@@ -84,27 +122,54 @@
 </div>
 
 
-<!-- https://www.tutorialrepublic.com/codelab.php?topic=faq&file=jquery-show-hide-div-using-radio-button -->
+
 <script>
 
     $(document).ready(function () {
 
-        $("#first").click(function(){
+        $("#first").click(function () {
             $("#update").hide()
-            $("#delet").hide()
-            $("#blog").toggle()
+            $("#delete").hide()
+            $("#blog").show()
         })
-        $("#second").click(function(){
+        $("#second").click(function () {
             $("#delete").hide()
             $("#blog").hide()
-            $("#update").toggle()
+            $("#update").show()
         })
-        $("#third").click(function(){
+        $("#third").click(function () {
             $("#update").hide()
             $("#blog").hide()
-            $("#delete").toggle()
+            $("#delete").show()
         })
 
     })
+
+
+    // const u = "{{request.user.id}}"
+    // $(document).ready(function () {
+    //     $("#id_creater").val(u);
+
+    // })
+
+    let fields = document.getElementsByTagName("input")
+    for (let field in fields) {
+        fields[field].className += "form-control"
+    }
+    $("#id_disc").addClass("form-control")
+    let sels = document.getElementsByTagName("select")
+    for (let sel in sels) {
+        sels[sel].className += "form-control"
+    }
+
+    // var groups="{{groups}}";
+    // console.log(groups)
+    // for(let group in groups ){
+    //         $("#id_name").val(group.name)
+    //         console.log(group.name)
+    //         $("#id_img").val(group.img)
+    //         $("#id_disc").val(group.disc)
+    // }
+
 </script>
 {% endblock %}

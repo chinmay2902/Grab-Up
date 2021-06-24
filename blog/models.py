@@ -11,7 +11,7 @@ class Blog(models.Model):
     disc=models.TextField(blank=True,null=True)
     img=models.ImageField(blank=True,null=True)
     creater=models.ForeignKey(User,on_delete=models.CASCADE,null=False)
-    date=models.DateTimeField(default=timezone.now())
+    date=models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title
@@ -21,7 +21,7 @@ class Post(models.Model):
     blog=models.ForeignKey(Blog,on_delete=models.CASCADE,null=False) 
     author=models.ForeignKey(User,on_delete=models.CASCADE,null=False)
     img=models.ImageField(blank=True,null=True)
-    date=models.DateTimeField(default=timezone.now())
+    date=models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.post
