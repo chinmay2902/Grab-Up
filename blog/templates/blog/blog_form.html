@@ -6,7 +6,7 @@
         <h3><strong>Add New Blog</strong></h3>
     </div>
     <div class="card-body">
-        <form method="POST" action="/create_blog/{{id}}/">
+        <form method="POST" action="/create_blog/{{id}}/"  enctype="multipart/form-data">
             {% csrf_token %}
             <div class="container mt-3">
                 <div class="mb-3">

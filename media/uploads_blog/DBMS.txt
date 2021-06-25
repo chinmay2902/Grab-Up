@@ -1,0 +1,38 @@
+Database-Collection of related data.
+Structued database is stored in relation(table).
+
+DBMS advantages
+faster search
+attributes
+concurrency
+Security
+redundancy-dulicate
+
+2-tier
+-2 level are Database  server and client
+-dis->Scalability
+   ->security
+-adv->maintainance
+
+3-tier
+-3 level are present data layer ,Application server and client
+-adv->security
+
+Schema->Logical Representation
+
+External Schema(view level)->
+conceptual Schema(Logical Level)->Make Blueprint
+physical schema-(physical level)->Were data is physically stored.
+
+Data Independence->
+Logical Data Independance-Changes in conceptual schema will not affect view level.
+Physical Data Independance-Changes in physical schema will not affect conceptual schema.
+
+
+Key-Attribute in table.Use to identity same row in table.
+Candidate Key-(Unique +Can be null)It is Unique Key and one of the is used as primary key.
+Alternative Key-The key which is in set of alternative key but not primary key.
+Primary Key-(Unique + not null) 
+
+Foreign Key-(maintain Refretial Integrity)It is an attribute or set of attribute that references to Primary key of same table or another table.
+ 

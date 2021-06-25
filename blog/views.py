@@ -79,11 +79,8 @@ def blog_form(request,id):
 
 def create_blog(request,id):
     if request.method=="POST":
-        print(id)
-        form=BlogForm(request.POST)
-        print(form)
+        form=BlogForm(request.POST,request.FILES)
         if form.is_valid():
-            print(form)
             messages.success(request,"Form submittd Successfully")
             form.save()
             return redirect("/")
@@ -91,7 +88,12 @@ def create_blog(request,id):
             messages.error(request,"Form is not Valid")
             return redirect("/")
 
-
+def delete_blog(request,id):
+    blog=Blog.objects.get(id=id)
+    if request.method=="POST":
+        messages.success(request,"Form Deleted")
+        blog.delete()
+        return redirect("/")
 
 
 def loginUser(request):

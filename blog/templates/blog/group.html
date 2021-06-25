@@ -90,7 +90,14 @@
 <div class="card shadow-lg mb-2">
    
     <div class="card-body">
-       
+       {% ifequal blog.creater request.user  %}
+       <div class="float-right">
+           <form method="POST" action="/delete_blog/{{blog.id}}/">
+            {% csrf_token %}
+               <button type="submit" class="btn btn-secondary"><i class="fas fa-trash"></i></button>
+           </form>
+       </div>
+       {%endifequal%}
         <div class="row">
             <div class="col col-lg-12">
                 <span>

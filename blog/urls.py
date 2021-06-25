@@ -14,6 +14,7 @@ urlpatterns = [
     path("all_groups/",views.all_groups,name="all_groups"),
     path("create_blog/<int:id>/",views.create_blog,name="create_blog"),
     path("blog_form/<int:id>/",views.blog_form,name="blog_form"),
+    path("delete_blog/<int:id>/",views.delete_blog,name="delete_blog"),
     
 
 
