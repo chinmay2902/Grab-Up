@@ -20,10 +20,8 @@ def group(request,id):
     members=Belong.objects.filter(group=id)
     # print(members)
     form=GroupForm(instance=group)
-    # print(group.disc)
-    
-
-    context={"group":group,"members":members,"form":form,"id":id}
+    blogs=Blog.objects.filter(group=id)
+    context={"group":group,"members":members,"form":form,"id":id,"blogs":blogs}
     return render(request,"blog/group.html",context)
 
 def group_form(request):
@@ -69,10 +67,29 @@ def delete_group(request,id):
         return redirect("/")
 
 def all_groups(request):
+    # not belong wala add karna ha
     groups=Group.objects.all()
     context={"groups":groups}
     return render(request,"blog/all_groups.html",context)
 
+def blog_form(request,id):
+    form=BlogForm()
+    context={"form":form,"id":id}
+    return render(request,"blog/blog_form.html",context)
+
+def create_blog(request,id):
+    if request.method=="POST":
+        print(id)
+        form=BlogForm(request.POST)
+        print(form)
+        if form.is_valid():
+            print(form)
+            messages.success(request,"Form submittd Successfully")
+            form.save()
+            return redirect("/")
+        else:
+            messages.error(request,"Form is not Valid")
+            return redirect("/")
 
 
 

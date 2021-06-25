@@ -12,6 +12,9 @@ urlpatterns = [
     path("update_group/<int:id>",views.update_group,name="update_group"),
     path("delete_group/<int:id>/",views.delete_group,name="delete_group"),
     path("all_groups/",views.all_groups,name="all_groups"),
+    path("create_blog/<int:id>/",views.create_blog,name="create_blog"),
+    path("blog_form/<int:id>/",views.blog_form,name="blog_form"),
+    
 
 
     path("loginUser/",views.loginUser,name="loginUser"),

@@ -28,8 +28,11 @@
 </div>
 
 <!-- Blog -->
-<div class="row" id="blog">
-    <div class="col-lg-9">
+<div class="container" id="blog">
+
+
+<div class="row">
+    <div class="col-lg-10">
         <div class="card shadow-lg mt-3">
             <div class="card-header">
                 <h2>
@@ -58,7 +61,7 @@
         </div>
 
     </div>
-    <div class="col col-lg-3">
+    <div class="col col-lg-2">
         <div class="card shadow-lg mt-5">
 
             <div class="card-header">
@@ -78,6 +81,54 @@
         </div>
     </div>
 </div>
+
+<!-- Blogs -->
+<div class="card-header  mt-4">
+    <strong>All Blogs</strong>
+</div>
+{% for blog in blogs %}
+<div class="card shadow-lg mb-2">
+   
+    <div class="card-body">
+       
+        <div class="row">
+            <div class="col col-lg-12">
+                <span>
+                    <h2>
+                        <strong style="color: black">{{blog.title}}</strong>
+                    </h2>
+                </span>
+                <p>{% if blog.img %}
+                    <img src="/media/{{blog.img}}" class="ml-autorounded mx-auto d-block" id="imageZoom" >
+                    {%endif%}</p>
+                <p>{{blog.disc}}</p>
+                <p>{% if blog.file %}
+                    <a href="/media/{{blog.file}}">See the document</a>
+                    <!-- <iframe src="/media/{{blog.file}}">See the File</iframe> -->
+                    {%endif%}
+                </p>
+                    
+            </div>
+        </div>
+        <div class=" col col-lg-2 ml-auto">
+            <div class="container ml-auto"><i>-by {{blog.creater}} (on {{blog.date}})</i></div>
+        </div>
+
+        
+    </div>
+    <div class="card-footer">
+    <div class="float-right">
+        <button type="button" class="btn btn-primary">Add Comment</button>
+    </div>
+    </div>
+    
+</div>
+{%endfor%}
+<div class="float-right mb-2">
+    <a href="/blog_form/{{id}}/"><button type="button" class="btn btn-primary">Add Blog</button></a>
+</div>
+</div>
+
 
 <!-- Update -->
 <div class="container" id="update" style="display: none;">
@@ -171,6 +222,8 @@
         //     $("#delete").show()
         // })
 
+        $('#imageZoom').imageZoom();
+
     })
 
 
@@ -198,6 +251,8 @@
     //         $("#id_img").val(group.img)
     //         $("#id_disc").val(group.disc)
     // }
+
+
 
 </script>
 {% endblock %}
