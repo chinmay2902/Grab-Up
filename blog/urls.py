@@ -1,6 +1,7 @@
+# from django import urls
 from blog import views
 from os import name
-from django.urls import path
+from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
  
@@ -15,12 +16,13 @@ urlpatterns = [
     path("create_blog/<int:id>/",views.create_blog,name="create_blog"),
     path("blog_form/<int:id>/",views.blog_form,name="blog_form"),
     path("delete_blog/<int:id>/",views.delete_blog,name="delete_blog"),
-    
+    path("join_group/<int:id>",views.join_group,name="join_group"),
 
 
     path("loginUser/",views.loginUser,name="loginUser"),
     path("logoutUser/",views.logoutUser,name="logoutUser"),
     path("signUp/",views.signUp,name="signUp"),
+    # urls(r'^auth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

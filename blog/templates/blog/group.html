@@ -12,6 +12,7 @@
             <label class="btn btn-secondary active " id="first">
                 <input type="radio" name="options" autocomplete="off" checked value="blog"> Blog
             </label>
+            {% ifequal group.creater request.user  %}
             <label class="btn btn-secondary " id="second">
                 <input type="radio" name="options" autocomplete="off" value="update"> Update
             </label>
@@ -22,6 +23,7 @@
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                 Delete
             </button>
+            {%endifequal%}
         </div>
 
     </div>

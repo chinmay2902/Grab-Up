@@ -1,25 +1,18 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% block title%}Index{%endblock%}
+{% block title%}All Group{%endblock%}
 {% block body %}
 
-<div class="container">
-    <div class="row mt-4">
-        <div class="col col-lg-2">
-            <h3>Profile</h3>
-        </div>
-
-        <div class="col col-lg-10">
+<div class="container mt-4">
+        <div class="col col-lg-12">
             <div class="card shadow-lg ">
                 <div class="card-header">
-                    <strong>Your Groups</strong>
-                    <div class="float-right">
-                        <a href="{% url 'group_form' %}"><button type="button" class="btn btn-success" >+New Group</button></a>
-                    </div>
+                    <strong>All Groups</strong>
                 </div>
                 <div class="card-body">
                     {% for group in groups %}
                     <div class="row">
+                        
                         <div class="col col-lg-12">
                             <span>
                                 <h2><a href="{% url 'group' group.id %}">
@@ -28,14 +21,20 @@
                                     {%else%}
                                     <img src="{% static 'images/group.png' %}" style="height: 50px;width:50px;border-radius: 50%;">
                                     {%endif%}
-                                    
                                     <strong style="color: black">{{group.name}}</strong></a>
+                                    <div class="float-right">
+                                        <form method="POST" action="/join_group/{{group.id}}">
+                                         {% csrf_token %}
+                                            <button type="submit" class="btn"><i class="fas fa-plus"></i></button>
+                                        </form>
+                                    </div>
                                 </h2>
                             </span>
+                            
                             <p>{{group.disc}}</p>
                         </div>
                     </div>
-                    <div class=" col col-lg-2 ml-auto">
+                    <div class=" col col-lg-2 ml-auto mb-3">
                         <div class="container ml-auto"><i>-by {{group.creater}}</i></div>
                     </div>
 

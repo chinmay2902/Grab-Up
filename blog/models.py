@@ -28,6 +28,7 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+# for comment
 class Post(models.Model):
     post=models.TextField()
     blog=models.ForeignKey(Blog,on_delete=models.CASCADE,null=False) 

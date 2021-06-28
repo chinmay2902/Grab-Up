@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+
+
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 ]
 
 ROOT_URLCONF = 'grabUp.urls'
@@ -64,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+    
             ],
         },
     },
@@ -133,3 +139,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"media/")
+
+# AUTHENTICATION_BACKENDS=[
+#     'social_core.backends.google.GoogleOAuth2',
+# ]
+
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY="211417824159-chqevqbo1lkte5tde282cf4jc5v0v2i5.apps.googleusercontent.com"
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET="VfWvIhkl8W5FMYr9ygFG2yw0"
