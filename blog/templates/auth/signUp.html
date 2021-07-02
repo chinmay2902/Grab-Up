@@ -1,4 +1,5 @@
 {% extends 'auth/base.html'%}
+{% load socialaccount %}
 {%block title%}SignUp{%endblock%}
 {% block body%}
 <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
@@ -15,15 +16,9 @@
                 <div class="card2 card border-0 px-4 py-5">
                     <div class="row mb-4 px-3">
                         <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
-                        <div class="facebook text-center mr-3">
-                            <div class="fa fa-facebook"></div>
-                        </div>
-                        <div class="twitter text-center mr-3">
-                            <div class="fa fa-twitter"></div>
-                        </div>
-                        <div class="linkedin text-center mr-3">
-                            <div class="fa fa-linkedin"></div>
-                        </div>
+                        <a href="{% provider_login_url 'google' %}">
+                            <button type="button" class="btn btn-primary rounded-circle"><i class="fab fa-google"></i></i></button>
+                        </a>
                     </div>
                     <div class="row px-3 mb-4">
                         <div class="line"></div> <small class="or text-center">Or</small>

@@ -23,6 +23,7 @@ urlpatterns = [
     path("logoutUser/",views.logoutUser,name="logoutUser"),
     path("signUp/",views.signUp,name="signUp"),
     # urls(r'^auth/', include('social_django.urls', namespace='social')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
