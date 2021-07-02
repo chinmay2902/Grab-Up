@@ -1,1 +1,1 @@
-web:gunicorn grabUp.wsgi --log-file -
+web: gunicorn grabUp.wsgi --log-file -
